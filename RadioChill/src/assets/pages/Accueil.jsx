@@ -5,7 +5,7 @@ import MusicPlayer from '../Component/MusicPlayer'
 
 export default function Accueil() {
   return (
-    <div className='AccuielContainer'>
+    <div className='AccueilContainer'>
       <Pomodoro/>
       <MusicPlayer/>
     </div>

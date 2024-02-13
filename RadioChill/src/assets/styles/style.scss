@@ -1,0 +1,42 @@
+// ************************************************
+// ***********         RESET CSS         **********
+// ************************************************
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// ************************************************
+// ***********         FONT  CSS         **********
+// ************************************************
+@font-face {
+    font-family: LilitaOne;
+    src: url('/fonts/LilitaOne-Regular.ttf');
+}
+
+*{
+    font-family: "LilitaOne" ;
+    font-weight: 400;
+    font-style: normal;
+
+      
+}
+
+
+// ************************************************
+// ***********         COLOR CSS         **********
+// ************************************************
+
+
+
+
+
+//-----------
+
+@import "AccueilContainer";
+@import "MusicPlayer";
+@import "ContentContainer";

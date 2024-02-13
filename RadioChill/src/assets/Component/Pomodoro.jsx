@@ -21,9 +21,32 @@ export default function Pomodoro() {
             <div className="TimerContainer">
                 {/* Affiche l'heure actuelle formatée sans les secondes */}
                 <p>{currentTime}</p>
+                <p className='PomodoroTimer'>12:11</p>
             </div>
             <div className="PomodoroContainer">
-                {/* Autres éléments de ton Pomodoro ici */}
+                <button className='PomodoroButton'>Pomodoro</button>
+                <div className="PomodoroTaskContainer">
+                    <div className="PomodoroTask">
+                        <p>Task 1</p>
+                        <button>X</button>
+                    </div>
+
+                    <div className="PomodoroTask">
+                        <p>Task 1</p>
+                        <button>X</button>
+                    </div>
+                    
+                    <div className="PomodoroTask">
+                        <p>Task 1</p>
+                        <button>X</button>
+                    </div>
+
+                </div>
+                <div className="PomodoroAddTask">
+                    <input value={'Add a task'} type="text" />
+                    <button>Save</button>
+                </div>
+                <button className='StartPomodoro'>Start</button>
             </div>
         </div>
     );
