@@ -1,9 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+
 
 export default function Pomodoro() {
     // Crée une variable d'état pour stocker l'heure actuelle formatée
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }));
+    const [isActive, setIsActive] = useState(true);
+    const isFirstRender = useRef(true);
 
+    const toggleIsActive = () => {
+        if (!isActive) {
+            gsap.to(".PomodoroContent", {
+              height: "100%"
+            });
+            gsap.to(".PomodoroButton",{
+                borderRadius : "0px"
+            })
+            
+          } else {
+            // Animation pour revenir à l'état initial ou un autre état
+            gsap.to(".PomodoroContent", {
+              height : "0%"
+            });
+            gsap.to(".PomodoroButton",{
+                borderRadius : "10px"
+            })
+          }
+        setIsActive(!isActive);
+    };
+
+
+    
     useEffect(() => {
         // Crée un intervalle qui met à jour l'heure actuelle chaque minute
         const timerId = setInterval(() => {
@@ -24,29 +54,31 @@ export default function Pomodoro() {
                 <p className='PomodoroTimer'>12:11</p>
             </div>
             <div className="PomodoroContainer">
-                <button className='PomodoroButton'>Pomodoro</button>
-                <div className="PomodoroTaskContainer">
-                    <div className="PomodoroTask">
-                        <p>Task 1</p>
-                        <button>X</button>
-                    </div>
+                <button onClick={toggleIsActive} className='PomodoroButton'>Pomodoro</button>
+                <div className="PomodoroContent">
+                    <div className="PomodoroTaskContainer">
+                        <div className="PomodoroTask">
+                            <p>Task 1</p>
+                            <button>X</button>
+                        </div>
 
-                    <div className="PomodoroTask">
-                        <p>Task 1</p>
-                        <button>X</button>
-                    </div>
-                    
-                    <div className="PomodoroTask">
-                        <p>Task 1</p>
-                        <button>X</button>
-                    </div>
+                        <div className="PomodoroTask">
+                            <p>Task 1</p>
+                            <button>X</button>
+                        </div>
+                        
+                        <div className="PomodoroTask">
+                            <p>Task 1</p>
+                            <button>X</button>
+                        </div>
 
+                    </div>
+                    <div className="PomodoroAddTask">
+                        <input value={'Add a task'} type="text" />
+                        <button>Save</button>
+                    </div>
+                    <button className='StartPomodoro'>Start</button>
                 </div>
-                <div className="PomodoroAddTask">
-                    <input value={'Add a task'} type="text" />
-                    <button>Save</button>
-                </div>
-                <button className='StartPomodoro'>Start</button>
             </div>
         </div>
     );
