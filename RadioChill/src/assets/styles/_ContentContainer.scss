@@ -1,6 +1,5 @@
 .ContentContainer{
     display: flex;
-    height: 80%;
     width: 100%;
     padding: 100px 0px 0px;
 
@@ -29,8 +28,8 @@
 
     .PomodoroContainer{
         display: flex;
+        max-height: 600px;
         flex-direction: column;
-        height: 65%;
 
         .PomodoroContent{
             display: flex;
@@ -63,11 +62,14 @@
 
         .PomodoroTaskContainer{
             display: flex;
+            position: relative;
             flex-direction: column;
             gap: 20px;
             padding: 20px;
             padding-bottom: 50px;
             width: 100%;
+            height: 60%;
+            overflow: scroll;
 
             .PomodoroTask{
                 display: flex;
@@ -113,6 +115,7 @@
         padding: 10px;
         width: 40%;
         margin-top: 30px;
+        margin-bottom: 20px;
         font-size: 48px;
     }
 }

@@ -9,7 +9,21 @@ export default function Pomodoro() {
     // Crée une variable d'état pour stocker l'heure actuelle formatée
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }));
     const [isActive, setIsActive] = useState(true);
-    const isFirstRender = useRef(true);
+    const [tasks, setTasks] = useState([]);
+    const [newTask, setNewTask] = useState("");
+  
+    const addTask = () => {
+      if (!newTask) return; // Ne rien faire si l'input est vide
+      setTasks([...tasks, newTask]); // Ajoute la nouvelle tâche à la liste
+      setNewTask(""); // Réinitialise l'input après l'ajout
+    };
+  
+    const deleteTask = (index) => {
+      setTasks(tasks.filter((_, i) => i !== index)); // Supprime la tâche à l'index spécifié
+    };
+
+
+
 
     const toggleIsActive = () => {
         if (!isActive) {
@@ -57,25 +71,21 @@ export default function Pomodoro() {
                 <button onClick={toggleIsActive} className='PomodoroButton'>Pomodoro</button>
                 <div className="PomodoroContent">
                     <div className="PomodoroTaskContainer">
-                        <div className="PomodoroTask">
-                            <p>Task 1</p>
-                            <button>X</button>
+                        {tasks.map((task, index) => (
+                        <div key={index} className="PomodoroTask">
+                        <p>{task}</p>
+                        <button onClick={() => deleteTask(index)}>X</button>
                         </div>
-
-                        <div className="PomodoroTask">
-                            <p>Task 1</p>
-                            <button>X</button>
-                        </div>
-                        
-                        <div className="PomodoroTask">
-                            <p>Task 1</p>
-                            <button>X</button>
-                        </div>
-
+                        ))}
                     </div>
                     <div className="PomodoroAddTask">
-                        <input value={'Add a task'} type="text" />
-                        <button>Save</button>
+                        <input 
+                            value={newTask}
+                            onChange={(e) => setNewTask(e.target.value)}
+                            type="text"
+                            placeholder="Add a task"
+                        />
+                        <button onClick={addTask}>Save</button>
                     </div>
                     <button className='StartPomodoro'>Start</button>
                 </div>
