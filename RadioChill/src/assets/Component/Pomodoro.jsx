@@ -5,28 +5,79 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 
 
+const alertSound = new Audio('music/Event.mp3');
+
 export default function Pomodoro() {
     // Crée une variable d'état pour stocker l'heure actuelle formatée
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }));
-    const [isActive, setIsActive] = useState(true);
+    const [isActive, setIsActive] = useState(false); // Commence comme inactif
+    const [isButtonActive, setisButtonActive] = useState(false); // Commence comme inactif
+    const [timer, setTimer] = useState(25 * 60); // 25 minutes en secondes
+    const [isWorkTime, setIsWorkTime] = useState(true); // True pour le cycle de travail, false pour la pause
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
   
+
+    useEffect(() => {
+        const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        setTasks(savedTasks);
+      }, []);
+
     const addTask = () => {
       if (!newTask) return; // Ne rien faire si l'input est vide
-      setTasks([...tasks, newTask]); // Ajoute la nouvelle tâche à la liste
-      setNewTask(""); // Réinitialise l'input après l'ajout
+      const updatedTasks = [...tasks, newTask];
+      setTasks(updatedTasks);
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+
     };
   
     const deleteTask = (index) => {
-      setTasks(tasks.filter((_, i) => i !== index)); // Supprime la tâche à l'index spécifié
+        const updatedTasks = tasks.filter((_, i) => i !== index);
+        setTasks(updatedTasks);
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
     };
 
 
+    const togllePomodoro = () => {
+        setIsActive(!isActive); // Basculer l'état d'activité du timer
+        if (!isActive) { // Si le timer était inactif, le démarrer
+            setTimer(isWorkTime ? 25 * 60  : 5 * 60); // Réinitialise le timer selon le cycle
+        }
+    };
+
+
+    useEffect(() => {
+
+
+        let interval = null;
+
+        if (isActive) {
+            interval = setInterval(() => {
+                setTimer((prevTimer) => {
+                    if (prevTimer <= 1) {
+                        alertSound.play(); // Joue un son à la fin du timer
+                        clearInterval(interval); // Arrête le timer
+                        setIsActive(false); // Désactive le timer
+                        setIsWorkTime(!isWorkTime); // Basculer entre le travail et la pause
+                        return isWorkTime ? 5 * 60 : 25 * 60; // Réinitialise le timer pour le prochain cycle
+                    }
+                    return prevTimer - 1;
+                });
+            }, 1000);
+        }
+
+        return () => clearInterval(interval);
+    }, [isActive, isWorkTime]);
+
+    const formatTime = () => {
+        const minutes = Math.floor(timer / 60);
+        const seconds = timer % 60;
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
 
 
     const toggleIsActive = () => {
-        if (!isActive) {
+        if (!isButtonActive) {
             gsap.to(".PomodoroContent", {
               height: "100%"
             });
@@ -43,7 +94,7 @@ export default function Pomodoro() {
                 borderRadius : "10px"
             })
           }
-        setIsActive(!isActive);
+        setisButtonActive(!isButtonActive);
     };
 
 
@@ -65,7 +116,7 @@ export default function Pomodoro() {
             <div className="TimerContainer">
                 {/* Affiche l'heure actuelle formatée sans les secondes */}
                 <p>{currentTime}</p>
-                <p className='PomodoroTimer'>12:11</p>
+                <p className='PomodoroTimer'>{formatTime()}</p>
             </div>
             <div className="PomodoroContainer">
                 <button onClick={toggleIsActive} className='PomodoroButton'>Pomodoro</button>
@@ -87,7 +138,7 @@ export default function Pomodoro() {
                         />
                         <button onClick={addTask}>Save</button>
                     </div>
-                    <button className='StartPomodoro'>Start</button>
+                    <button onClick={togllePomodoro} className='StartPomodoro'>{isActive ? 'Stop' : 'Start'}</button>
                 </div>
             </div>
         </div>
