@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 
 
-import { gsap } from "gsap";
+
 
 
 const alertSound = new Audio('music/Event.mp3');

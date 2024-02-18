@@ -6,12 +6,14 @@ import '../src/assets/styles/style.css'
 import Accueil from './assets/pages/Accueil'
 import About from './assets/pages/About'
 import Nav from "./assets/Component/Nav";
+import Loader from "./assets/pages/Loader";
 
 
 function App() {
   return (
     <>
       <div className="MainContainer">
+        <Loader/>
         <Nav/>
         <Routes>
           <Route path="/" element={<Accueil/>} />

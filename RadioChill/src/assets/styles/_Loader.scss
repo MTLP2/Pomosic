@@ -1,0 +1,26 @@
+.Loader {
+    display: grid;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(174, 255, 185);
+    place-items: center; /* Centre le contenu horizontalement et verticalement */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+
+
+    
+    
+    h2{
+        color: white;
+        font-size: 118px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        text-align: center !important;
+
+    }
+
+    .char{
+        transform: translateY(115px);
+        transition: transform .5s;
+    }
+}
