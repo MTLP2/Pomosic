@@ -10,7 +10,7 @@ export default function Loader() {
 
     timeline.to('.char', {
         y: 0,
-        stagger: 0.3,
+        stagger: 0.2,
         delay: 0.2,
         duration : 0
     })
@@ -28,6 +28,6 @@ export default function Loader() {
 
   return <div className='Loader' >
     
-    <h2 id='my-text'>RadioChill</h2>
+    <h2 id='my-text'>TempoTomato</h2>
     </div>;
 }
