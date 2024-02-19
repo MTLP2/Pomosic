@@ -3,6 +3,10 @@
     width: 100%;
     padding: 100px 0px 0px;
 
+    @include for-phone{
+        flex-direction: column;
+      }
+
     .TimerContainer{
 
         width: 70%;
@@ -30,6 +34,16 @@
         display: flex;
         max-height: 600px;
         flex-direction: column;
+        height: 100% !important;
+
+        @include for-phone{
+            height: 55% !important;
+            margin-top: 0px !important;
+          }
+
+        @include for-tablet{
+            margin-top: 30px;
+          }
 
         .PomodoroContent{
             display: flex;
@@ -43,6 +57,16 @@
             width: 466px;
             height: 100%;
             transition: 1s all;
+
+            @include for-phone{
+
+              }
+
+            @include for-tablet{
+                width: 100%;
+                padding-left: 10px;
+                padding-right: 10px;
+              }
         }
 
         .PomodoroButton{

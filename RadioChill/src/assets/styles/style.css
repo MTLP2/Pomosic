@@ -47,9 +47,33 @@
   width: 50%;
   background-color: rgba(255, 255, 255, 0.671);
 }
+@media (max-width: 740px) {
+  .MusicPlayerContainer {
+    width: 95% !important;
+    height: 100px;
+    left: 3% !important;
+  }
+}
+@media (max-width: 1024px) {
+  .MusicPlayerContainer {
+    left: 20%;
+    width: 60%;
+  }
+}
+@media (max-width: 768px) {
+  .MusicPlayerContainer {
+    left: 11%;
+    width: 80%;
+  }
+}
 .MusicPlayerContainer img {
   width: 12%;
   height: 100%;
+}
+@media (max-width: 1024px) {
+  .MusicPlayerContainer img {
+    width: 50%;
+  }
 }
 .MusicPlayerContainer button {
   font-size: 38px;
@@ -64,6 +88,11 @@
 .MusicPlayerContainer .MusicInfo {
   width: 80%;
 }
+@media (max-width: 740px) {
+  .MusicPlayerContainer .MusicInfo {
+    font-size: 9px;
+  }
+}
 
 .Buttonshow {
   border: none;
@@ -76,6 +105,11 @@
   font-size: 74px;
   width: 150px;
   height: 120px;
+}
+@media (max-width: 740px) {
+  .Buttonshow {
+    margin-left: -70px;
+  }
 }
 
 .bottom {
@@ -91,6 +125,11 @@ input[type=range] {
   background: transparent;
   cursor: pointer;
   width: 10rem;
+}
+@media (max-width: 768px) {
+  input[type=range] {
+    width: 4rem;
+  }
 }
 
 /* Removes default focus */
@@ -149,6 +188,11 @@ input[type=range]:focus::-moz-range-thumb {
   width: 100%;
   padding: 100px 0px 0px;
 }
+@media (max-width: 740px) {
+  .ContentContainer {
+    flex-direction: column;
+  }
+}
 .ContentContainer .TimerContainer {
   width: 70%;
   font-size: 128px;
@@ -168,6 +212,18 @@ input[type=range]:focus::-moz-range-thumb {
   display: flex;
   max-height: 600px;
   flex-direction: column;
+  height: 100% !important;
+}
+@media (max-width: 740px) {
+  .ContentContainer .PomodoroContainer {
+    height: 55% !important;
+    margin-top: 0px !important;
+  }
+}
+@media (max-width: 768px) {
+  .ContentContainer .PomodoroContainer {
+    margin-top: 30px;
+  }
 }
 .ContentContainer .PomodoroContainer .PomodoroContent {
   display: flex;
@@ -181,6 +237,13 @@ input[type=range]:focus::-moz-range-thumb {
   width: 466px;
   height: 100%;
   transition: 1s all;
+}
+@media (max-width: 768px) {
+  .ContentContainer .PomodoroContainer .PomodoroContent {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 .ContentContainer .PomodoroContainer .PomodoroButton {
   background-color: rgba(206, 246, 196, 0.9098039216);
