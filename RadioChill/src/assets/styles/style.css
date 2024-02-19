@@ -191,6 +191,8 @@ input[type=range]:focus::-moz-range-thumb {
 @media (max-width: 740px) {
   .ContentContainer {
     flex-direction: column;
+    padding: 0px;
+    gap: 40px;
   }
 }
 .ContentContainer .TimerContainer {
@@ -342,6 +344,11 @@ input[type=range]:focus::-moz-range-thumb {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   text-align: center !important;
+}
+@media (max-width: 740px) {
+  .Loader h2 {
+    font-size: 58px;
+  }
 }
 .Loader .char {
   transform: translateY(115px);

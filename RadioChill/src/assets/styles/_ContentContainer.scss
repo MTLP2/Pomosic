@@ -5,6 +5,8 @@
 
     @include for-phone{
         flex-direction: column;
+        padding: 0px;
+        gap: 40px;
       }
 
     .TimerContainer{
