@@ -261,6 +261,9 @@ input[type=range]:focus::-moz-range-thumb {
   width: 100%;
   overflow: scroll;
 }
+.ContentContainer .PomodoroContainer .PomodoroTaskContainer button {
+  color: black;
+}
 .ContentContainer .PomodoroContainer .PomodoroTaskContainer .PomodoroTask {
   display: flex;
   justify-content: space-between;
