@@ -95,7 +95,8 @@
 }
 @media (max-width: 740px) {
   .Buttonshow {
-    margin-left: -190px;
+    bottom: -190px;
+    margin-left: -70px;
   }
 }
 

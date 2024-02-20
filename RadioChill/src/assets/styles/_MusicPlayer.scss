@@ -64,7 +64,8 @@
     color: black;
 
     @include for-phone{
-      margin-left: -190px;
+    bottom: -190px;
+    margin-left: -70px;
     }
 }
 
