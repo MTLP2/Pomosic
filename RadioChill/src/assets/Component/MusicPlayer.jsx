@@ -7,7 +7,8 @@ export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false); // État pour suivre si l'audio est en lecture
   const [volume, setVolume] = useState(0.1); // État pour suivre le volume, initialisé à 10%
   const [isButtonActive, setisButtonActive] = useState(false); // Commence comme inactif
-
+  const musicPlayerContainerRef = useRef(null);
+  const buttonShowRef = useRef(null);
 
   useEffect(() => {
     // Ajuste le volume de l'audio quand le volume d'état change
@@ -37,7 +38,7 @@ export default function MusicPlayer() {
 
 
   useEffect(()=>{
-    document.querySelector(".Buttonshow").style.display = 'none'; // Cache l'élément après l'animation
+    buttonShowRef.current.style.display = 'none';
 
   })
 
@@ -47,8 +48,8 @@ const toggleHide = () => {
       y: 200,
       autoAlpha: 0, // Rend l'élément complètement invisible et le passe en visibility: hidden
       onComplete: () => {
-        document.querySelector(".MusicPlayerContainer").style.display = 'none'; // Cache l'élément après l'animation
-        document.querySelector(".Buttonshow").style.display = ''; // Affiche l'élément avant l'animation
+        musicPlayerContainerRef.current.style.display = "none";
+        buttonShowRef.current.style.display = '';
       }
     });
 
@@ -59,7 +60,7 @@ const toggleHide = () => {
     });
   } else {
     // Assure-toi que l'élément est réaffiché avant de commencer l'animation de retour
-    document.querySelector(".MusicPlayerContainer").style.display = ''; // Affiche l'élément avant l'animation
+    musicPlayerContainerRef.current.style.display = '';
     gsap.to(".MusicPlayerContainer", {
       y: 0,
       autoAlpha: 1 // Réaffiche l'élément
@@ -69,7 +70,7 @@ const toggleHide = () => {
       x: 0,
       autoAlpha: 1,
       onComplete: () => {
-        document.querySelector(".Buttonshow").style.display = 'none'; // Cache l'élément après l'animation
+        buttonShowRef.current.style.display = 'none';
       }
     });
   }
@@ -78,8 +79,8 @@ const toggleHide = () => {
 
   return (
     <div className='bottom'>
-      <button className='Buttonshow' onClick={toggleHide} ><i class="fa-solid fa-arrow-up"></i></button>
-      <div className='MusicPlayerContainer'>
+      <button ref={buttonShowRef} className='Buttonshow' onClick={toggleHide} ><i class="fa-solid fa-arrow-up"></i></button>
+      <div ref={musicPlayerContainerRef} className='MusicPlayerContainer'>
         <img src="https://api.somafm.com/img/dronezone120.jpg" alt="Cover art" />
         <button onClick={togglePlayPause}>
           <i className={isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play"}></i>
