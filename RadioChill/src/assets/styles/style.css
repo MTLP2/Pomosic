@@ -33,6 +33,11 @@
   width: 90%;
   height: 100vh;
 }
+@media (max-width: 740px) {
+  .MainContainer .AccueilContainer {
+    height: 140svh;
+  }
+}
 
 .MusicPlayerContainer {
   display: flex;
